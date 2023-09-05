@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Diagnostico</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+
+<body>
+    <div>
+        <h1>Listar Usuarios</h1>
+        <div id="aux">
+            <ul class="list-group">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <h1>Listar Usuario</h1>
+        <div id="aux1">
+            <ul class="list-group">
+                <li class="list-group-item">An item</li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <h1>Crear Usuario</h1>
+        <div id="aux2">
+
+        </div>
+    </div>
+
+    <div>
+        <h1>Actualizar Usuario</h1>
+        <div id="aux3">
+
+        </div>
+    </div>
+
+    <div>
+        <h1>Eliminar Usuario</h1>
+        <div id="aux4">
+
+        </div>
+    </div>
+</body>
+
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://reqres.in/api/users", true);
+xhr.onload = function(){
+    var personas = JSON.parse(xhr.responseText).data
+    console.log("-----------------------------")
+    console.log("Listar usuarios")
+    for(var i = 0; i < personas.length; i++){
+        console.log("id: " + personas[i].id + " nombre: " + personas[i].first_name)
+    }
+    console.log("-----------------------------")
+
+};
+xhr.send();
+
+var xhr1 = new XMLHttpRequest();
+var dni = 10;
+xhr1.open("GET", "https://reqres.in/api/users/" + dni, true);
+xhr1.onload = function(){
+    var personas = JSON.parse(xhr1.responseText).data
+    console.log("-----------------------------")
+    console.log("Listar usuario")
+    console.log("id: " + personas.id + " nombre: " + personas.first_name)
+    console.log("-----------------------------")
+};
+xhr1.send();
+
+var xhr2 = new XMLHttpRequest();
+var dni = 1;
+xhr2.open("POST", "https://reqres.in/api/users", true);
+xhr2.onload = function(){
+    var personas = JSON.parse(xhr2.responseText).data
+    console.log("-----------------------------")
+    console.log("Crear usuario")
+    if(parseInt(xhr2.status) === 201){
+        console.log(xhr2.status + " usuario creado exitosamente")
+        console.log("-----------------------------")
+    }else{
+        console.log(xhr2.status + " ocurrio un error")
+        console.log("-----------------------------")
+    }
+    
+};
+xhr2.send(data = {
+        "name": "morpheus",
+        "job": "leader",
+        "id": "428",
+        "createdAt": "2023-09-05T22:38:41.213Z"
+    });
+
+
+var xhr3 = new XMLHttpRequest();
+var dni = 1;
+var name = "Daniel Wong"
+var job = "Mecánico"
+xhr3.open("PUT", "https://reqres.in/api/users/" + dni, true);
+xhr3.onload = function(){
+    var personas = JSON.parse(xhr3.responseText).data
+    console.log("-----------------------------")
+    console.log("Actualizar usuario")
+    if(parseInt(xhr3.status) === 200){
+        console.log(xhr3.status + " usuario actualizado exitosamente")
+        console.log("-----------------------------")
+    }else{
+        console.log(xhr3.status + " ocurrio un error")
+        console.log("-----------------------------")
+    }
+    
+};
+xhr3.send(data = {
+        name: "morpheus",
+        job: "leader"
+    });
+
+
+var xhr4 = new XMLHttpRequest();
+var dni = 1;
+xhr4.open("PUT", "https://reqres.in/api/users/" + dni, true);
+xhr4.onload = function(){
+    var personas = JSON.parse(xhr4.responseText).data
+    console.log("-----------------------------")
+    console.log("Eliminar usuario")
+    if(parseInt(xhr4.status) === 204){
+        console.log(xhr4.status + " usuario eliminado exitosamente")
+        console.log("-----------------------------")
+    }else{
+        console.log(xhr4.status + " ocurrio un error")
+        console.log("-----------------------------")
+    }
+    
+};
+xhr4.send();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+</html>
